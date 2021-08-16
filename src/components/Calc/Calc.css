@@ -1,0 +1,7 @@
+.w-200 {
+  width: 12rem;
+}
+
+.w-200:focus {
+  box-shadow: none;
+}

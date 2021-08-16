@@ -1,0 +1,14 @@
+#floatingInput1, #floatingInput2 {
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 0;
+  color: #fff;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #535353;
+  transition: all 0.15s ease;
+}
+
+#floatingInput1:focus, #floatingInput2:focus{
+  box-shadow: inset 0 -2px 0 #46BDF4;
+  color: #fff;
+}
+
