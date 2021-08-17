@@ -1,16 +1,17 @@
 .btn-calc {
-  background: linear-gradient(45deg, #7A0FFF, #46BDF4);
+  background: linear-gradient(180deg, #46BDF4, #7A0FFF);
   color: #fff;
   padding: 10px 20px;
   text-align: center;
-  transition: all 0.5s;
   font-weight: 600;
-  border: none;
+  border: 1px solid #5f0985;
+  width: 100%;
 }
 
 .btn-calc:hover{
-  background: linear-gradient(45deg, #46BDF4, #7A0FFF);
-  color: #fff;
+  background: linear-gradient(180deg, #7A0FFF, #46BDF4);
+  color: #212529;
+  border: 1px solid #5f0985;
 }
 
 .btn-calc:focus {

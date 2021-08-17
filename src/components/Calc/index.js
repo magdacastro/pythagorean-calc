@@ -14,11 +14,11 @@ const Calc = () => {
   ]);
 
   function handleSideA(event) {
-    setSideA(event.target.value);
+    setSideA(event.target.value.replace(/\D/g, ''));
   }
 
   function handleSideB(event) {
-    setSideB(event.target.value);
+    setSideB(event.target.value.replace(/\D/g, ''));
   }
 
   function hypot() {
@@ -30,11 +30,22 @@ const Calc = () => {
   }
 
   function handleClick() {
+    if(parseInt(sideA) === 0 || parseInt(sideB) === 0) {
+      return alert("Os valores precisam ser positivos");
+    }
     const calc = getOption(true).name === "cathetus" ? cathetus() : hypot();
     setResult(calc);
   }
 
+  
+  function cleanElements(){
+    setSideA(0);
+    setSideB(0);
+    setResult(0);
+  }
+
   function handleSelect(event){
+    cleanElements();
     const choices = options.map(option => {
       option.selected = option.name === event.target.value ? true : false;
       return option;
@@ -52,19 +63,20 @@ const Calc = () => {
 
   return (
     <div className="container">
-      <div className="row mt-3">
-        <h2 className="text-center text-white">Pythagorean Theorem</h2>
-        <p className="text-white">Given a right-angled triangle one can use the following equation to calculate an unknown side of the triangle: c = a + b;
-        where A and B are the cathetus, and C is the hypotenuse (the longest side).</p>
-      </div>
-      <div className="row">
-        <div className="col-lg-6">
+      <div className="row mt-5">
+        <div className="col-lg-7">
           <div className="row">
-            <div className="col-md-8">
-              <p className="text-white">Choose one of the options to calculate:</p>
+            <div className="main-title mb-4">
+              <h1>Pythagorean Theorem</h1>
+              <p className="text-white">Given a right-angled triangle one can use the following equation to calculate an unknown side of the triangle where A and B are the cathetus, and C is the hypotenuse (the longest side): <b>c² = a² + b²</b></p>
             </div>
-            <div className="col-md-4">
-              <select className="form-select form-select-sm w-200" onChange={handleSelect} defaultValue={options.find(option => option.selected === true).name}>
+          </div>
+          <div className="row">
+            <div className="col-md-7">
+              <p className="text-white text-select">Choose one of the options to calculate:</p>
+            </div>
+            <div className="col-md-5">
+              <select className="form-select form-select-sm w-100" onChange={handleSelect} defaultValue={options.find(option => option.selected === true).name}>
                   {
                     options.map((option, index) => {
                       return (<option value={option.name} key={index}>{option.label}</option>) 
@@ -73,29 +85,28 @@ const Calc = () => {
               </select>
             </div>
           </div>
-          <div className="row">
+          <div className="row mt-3">
             <div className="col-md-6 mb-3">
               <div className="form-floating mb-3">
-                <Input id="floatingInput1" label="Adjacent Cathetus" onChange={handleSideA} />
+                <Input id="floatingInput1" label="Adjacent Cathetus" value={sideA || ""} onChange={handleSideA} />
               </div>         
             </div>         
             <div className="col-md-6 mb-3">
               <div className="form-floating mb-3">
-                <Input id="floatingInput2" label={choosenLabel()} onChange={handleSideB} />
+                <Input id="floatingInput2" label={choosenLabel()} value={sideB || ""} onChange={handleSideB} />
               </div>     
             </div>
             <div className="col-md-12 mb-3">
               <Button onClick={handleClick} />
             </div>
-            <div className="col-md-12 mt-3">
-              <label className="text-white">Result:</label>
-              <span className="text-white">{result || ""}</span>
+            <div className="col-md-12 mb-3">
+              <label className="text-white ">{result ? `The answer is: ${result}` : ""}</label>
             </div>
           </div>
         </div>
-        <div className="col-lg-6">
+        <div className="col-lg-5">
           <div>
-            <img className="w-100" src={math_bg} alt=""/>
+            <img className="w-100" style={{'marginTop':'20px'}} src={math_bg} alt=""/>
           </div>
         </div>
       </div>

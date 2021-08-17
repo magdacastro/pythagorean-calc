@@ -1,7 +1,16 @@
-.w-200 {
-  width: 12rem;
+
+.text-select {
+  font-size: 15px;
 }
 
-.w-200:focus {
-  box-shadow: none;
+.main-title h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 35px;
+  font-size: 50px;
+  background: -webkit-linear-gradient(#a270af, #46147c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+
