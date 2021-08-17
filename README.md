@@ -23,7 +23,7 @@
 
 `git clone https://github.com/magdacastro/pythagorean-calc.git`
 
-<p>Install dependences:</p>
+<p>Install dependencies:</p>
 
 `npm install`
 
