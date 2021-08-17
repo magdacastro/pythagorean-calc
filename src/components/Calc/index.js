@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import Input from '../Input';
 import Button from '../Button';
+import Footer from '../Footer';
+import 'react-toastify/dist/ReactToastify.css';
 import './Calc.css';
 import math_bg from '../../assets/img/math_bg.png';
 
@@ -12,6 +15,7 @@ const Calc = () => {
     {name: 'cathetus', label: 'Opposite Cathetus', selected: false},
     {name: 'hypotenuse', label: 'Hypotenuse', selected: true}
   ]);
+  const notify = () => toast.info("Por favor, insira números positivos!");
 
   function handleSideA(event) {
     setSideA(event.target.value.replace(/\D/g, ''));
@@ -31,7 +35,7 @@ const Calc = () => {
 
   function handleClick() {
     if(parseInt(sideA) === 0 || parseInt(sideB) === 0) {
-      return alert("Os valores precisam ser positivos");
+      return notify();
     }
     const calc = getOption(true).name === "cathetus" ? cathetus() : hypot();
     setResult(calc);
@@ -63,6 +67,13 @@ const Calc = () => {
 
   return (
     <div className="container">
+      <ToastContainer position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover={false}/>
       <div className="row mt-5">
         <div className="col-lg-7">
           <div className="row">
@@ -73,7 +84,7 @@ const Calc = () => {
           </div>
           <div className="row">
             <div className="col-md-7">
-              <p className="text-white text-select">Choose one of the options to calculate:</p>
+              <p className="text-white">Choose one of the options to calculate:</p>
             </div>
             <div className="col-md-5">
               <select className="form-select form-select-sm w-100" onChange={handleSelect} defaultValue={options.find(option => option.selected === true).name}>
@@ -110,6 +121,7 @@ const Calc = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
